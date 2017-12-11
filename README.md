@@ -1,4 +1,4 @@
-# Punnet Square Generator
+# Punnett Square Generator
 
 This program makes punnet squares using python 3 and Pillow.
 Supports any number of genes, so long as your computer is powerful enough (and python doesn't crash)

@@ -85,6 +85,7 @@ while True:
                 d.rectangle((i*(sqsize+1)+1,j*(sqsize+1)+1,i*(sqsize+1)+sqsize,j*(sqsize+1)++sqsize),fill=q)
                 d.text((i*(sqsize+1)+1+3*mult,j*(sqsize+1)+1+sqsize/2-5*mult),p,fill=(0,0,0),font=ImageFont.truetype("/Library/Fonts/Courier New.ttf", 10*mult),spacing=0)
 
-        minicap=[7424, 665, 7428, 7429, 7431, 1171, 610, 668, 618, 7434, 7435, 671, 7437, 628, 7439, 7448, 491, 640, 115, 7451, 7452, 7456, 7457, 120, 655, 7458]
+    minicap=[7424, 665, 7428, 7429, 7431, 1171, 610, 668, 618, 7434, 7435, 671, 7437, 628, 7439, 7448, 491, 640, 115, 7451, 7452, 7456, 7457, 120, 655, 7458]
 
-        img.save(location+'/Example Squares/'+str(int(len(let[0])/2))+'_'+(''.join(list((a if ord(a)<97 else chr(minicap[ord(a)-97])) for a in let[0]))+' - '+''.join(list((a if ord(a)<97 else chr(minicap[ord(a)-97])) for a in let[1])))+'.png')
+    img.show()
+    img.save(location+'/Example Squares/'+str(int(len(let[0])/2))+'_'+(''.join(list((a if ord(a)<97 else chr(minicap[ord(a)-97])) for a in let[0]))+' - '+''.join(list((a if ord(a)<97 else chr(minicap[ord(a)-97])) for a in let[1])))+'.png')

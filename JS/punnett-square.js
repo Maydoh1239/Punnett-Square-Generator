@@ -44,8 +44,10 @@ function renderImage(x1, y1, x1, y1){
 
 }
 
-function addText(letter, size){
-  
+function addText(string, size){
+  for ( var i = 0; i < string.length; i++ ){
+    
+  }
 }
 
 function geneSort ( s ){

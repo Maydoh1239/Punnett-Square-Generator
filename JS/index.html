@@ -1,9 +1,17 @@
-#<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
 </head>
 <body>
-  <div id="input">
+  <div>
+    <label for="input1">First Parent</label>
+    <input id="input1" onKeyUp="update()" onInput="update()" type="text" title="input1"></input><br>
+    <label for="input2">Second Parent</label>
+    <input id="input2" onInput="update()" type="text" title="input1"></input>
+
   </div>
-  <canvas id="out">
+  <canvas id="out" height="1000" width="1000">
   </canvas>
+  <script src="punnett-square.js"></script>
 </body>
+</html>

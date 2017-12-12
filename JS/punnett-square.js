@@ -3,22 +3,51 @@ var ctx = canvas.getContext("2d");
 var sqsize = canvas.width;
 var input1;
 var input2;
-console.log(sqsize);
 
 function update(){
   sqsize = canvas.width
   input1 = document.getElementById('input1').value;
   input2 = document.getElementById('input2').value;
-  console.log(input1);
-  console.log(input2);
+  //Checks if both parents have same number of alleles and whether it is an even amount total
   if (input1.length===input2.length && input1.length/2==Math.round(input1.length/2)){
     run();
   }
 }
 
 function run(){
+  //List of all possible gametes (1 is dominant, 0 is recessive)
   var bins=[];
+  for ( var i = 0; i < Math.pow( 2 , input1.length/2 ); i++ ){
+    var binaryst = i.toString(2);
+    bins.push(new Array(input1.length/2 - binaryst.length+1).join('0')+binaryst);
+  }
 
+  c=[]
+  r=[]
+
+  for ( var i = 0; i < bins.length; i++ ){
+    var k = bins[i];
+    var s1 = '' , s2 = '';
+    for ( var a = 0; a < k.length; a++ ){
+      //takes either the dominant or recessive from the A th gene
+      var v = (2*a)+parseInt(k.charAt(a));
+      s1+=input1.charAt(v);
+      s2+=input2.charAt(v);
+    }
+    c.push(s1);
+    r.push(s2);
+  }
+
+}
+
+function geneSort ( s ){
+  s1 = s.split('');
+  function compare ( a , b ){
+    var a1 = a.toLowerCase().charCodeAt(0)*2+(a.toLowerCase()==a ? 1 : 0);
+    var b1 = b.toLowerCase().charCodeAt(0)*2+(b.toLowerCase()==a ? 1 : 0)
+    return a - b;
+  }
+  return s1.sort(compare()).join('');
 }
 
 function getColor(s){
@@ -28,6 +57,7 @@ function getColor(s){
 }
 
 function hslhex(h, s, l) {
+  //Converts HSL to Hex
   h /= 360;
   s /= 100;
   l /= 100;

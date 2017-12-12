@@ -56,11 +56,6 @@ while True:
         c.append(s1)
         r.append(s2)
 
-    table = []
-
-
-    cols = []
-
     mult=2
     sqsize=mult*((6*len(let[0]))+6)
 

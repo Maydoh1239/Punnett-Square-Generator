@@ -37,16 +37,27 @@ function run(){
     c.push(s1);
     r.push(s2);
   }
+  addText("test", 100,10,10);
+  addText("best", 100, 500,500);
 
 }
 
-function renderImage(x1, y1, x1, y1){
+function renderFrame(x1, y1, x1, y1){
 
 }
 
-function addText(string, size){
+function addText(string , size , x , y){
   for ( var i = 0; i < string.length; i++ ){
-    
+    var letter = new Image();
+    letter.src = "letters/"+string.charCodeAt(i)+".png";
+    console.log(i)
+    console.log("loadimagehere")
+    letter.onload = function(){
+      console.log(i)
+      console.log(x+(size*i*0.6)+","+y)
+      ctx.drawImage( letter ,x+size*i*0.6 , y , size*0.6, size);
+    }
+    console.log(letter.complete); //wait until image loads
   }
 }
 

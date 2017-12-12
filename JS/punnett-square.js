@@ -40,6 +40,14 @@ function run(){
 
 }
 
+function renderImage(x1, y1, x1, y1){
+
+}
+
+function addText(letter, size){
+  
+}
+
 function geneSort ( s ){
   s1 = s.split('');
   function compare ( a , b ){

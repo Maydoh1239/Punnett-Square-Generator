@@ -1,8 +1,22 @@
 # Punnett Square Generator
 
-This program makes punnet squares using python 3 and Pillow.
-Supports any number of genes, so long as your computer is powerful enough (and python doesn't crash)
-run the program, and input your parents. Colors are from red to purple (and back), depending on how recessive the gene is.
+This program makes punnet squares using either Python 3 and PIL or JavaScript.
+
+## Javascript How To
+
+### From local files
+* Download all files to your computer
+* Open `.../Punnett-Square-Generator/JS/index.html` in your browser.
+* Input parents in the input boxes
+
+### Online
+* Visit ![my website](https://UnsignedByte.github.io/programs/001)
+* Input parents in the input boxes
+
+## Python How To
+* Download all files to your computer
+* Open and run `.../Punnett-Square-Generator/Python/Squares.py`
+* Input parents separated by a dash
 
 ![AA-AA](https://github.com/UnsignedByte/Punnett-Square-Generator/blob/master/Python/Example%20Squares/1_AA%20-%20AA.png)
 ![AA-Aa](https://github.com/UnsignedByte/Punnett-Square-Generator/blob/master/Python/Example%20Squares/1_AA%20-%20A%E1%B4%80.png)

@@ -27,14 +27,14 @@ canvas.onmousewheel = function (evt) {
   }
 }
 
-document.addEventListener ( 'mousemove' , getMouseCoords);
-document.addEventListener ( 'mouseenter' , getMouseCoords);
+canvas.addEventListener ( 'mousemove' , getMouseCoords);
+canvas.addEventListener ( 'mouseenter' , getMouseCoords);
 
-document.addEventListener ( 'mousedown' , function ( evt ) {
+canvas.addEventListener ( 'mousedown' , function ( evt ) {
   mouseDown = true;
 });
 
-document.addEventListener ( 'mouseup' , function ( evt ) {
+canvas.addEventListener ( 'mouseup' , function ( evt ) {
   mouseDown = false;
 });
 
@@ -138,7 +138,7 @@ function shouldRender ( x1 , y1 , sSize , a , b) { //should this be rendered?
       ctx.fillRect (sSize*a+x1,sSize*b+y1,sSize,sSize);
       ctx.globalAlpha = 1;
       ctx.strokeStyle = "#000000";
-      ctx.lineWidth = sqsize/50;
+      ctx.lineWidth = sqsize/100;
       ctx.strokeRect (sSize*a+x1,sSize*b+y1,sSize,sSize);
       ctx.globalAlpha = 0.5;
       if ( sqsize > 20 ){

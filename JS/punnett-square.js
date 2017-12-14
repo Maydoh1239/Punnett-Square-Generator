@@ -18,10 +18,10 @@ canvas.onmousewheel = function (evt) {
   var scale = (sqnum*sqsize)/canvas.width;
   var wheel = Math.min(500,Math.max(-499,evt.wheelDelta))/500+1;
   if ( (scale<=1 && scale*wheel>scale) || scale>1 ){
-    scaleChange = scale*wheel-scale;
+    scaleChange = Math.max(1,scale*wheel)-scale;
     sqX -= scaleChange*(mouseX-sqX)/scale;
     sqY -= scaleChange*(mouseY-sqY)/scale;
-    scale*=wheel;
+    scale=Math.max(1,scale*wheel);
     sqsize = canvas.width*scale/sqnum;
     renderFrame(sqX,sqY,sqsize);
   }
@@ -98,17 +98,20 @@ function run(){
   square = new Array ( c.length ); // the actual punnett square
 
   for ( i = 0; i <= c.length; i++ ){
-    if ( i>0 ){
-      square[i-1] = new Array ( r.length );
-    }
+    square[i] = new Array ( r.length+1 );
     for ( j = 0; j <= r.length; j++){
       if ( i != 0 && j != 0 ) {
-        square[i-1][j-1] = geneSort(c[i-1]+r[j-1]);
+        square[i][j] = geneSort(c[i-1]+r[j-1]);
+      }else if ( i!=0 ) {
+        square[i][j]=r[i-1];
+      }else if ( j!=0 ) {
+        square[i][j]=c[j-1];
       }
     }
   }
+  console.log(square);
   loadDone = true;
-  sqsize = canvas.width/(square.length+1);
+  sqsize = canvas.width/(square.length);
   renderFrame(0,0,sqsize)
 }
 
@@ -127,20 +130,33 @@ function renderFrame(x1, y1, sSize){ //allows zooming
   }
 }
 
-function shouldRender ( x1 , y1 , sSize , a , b ) { //should this be rendered?
-  if ( sSize*(a+2)+x1 > 0 && sSize*(b+2)+y1 > 0 && sSize*(a+1)+x1 < canvas.width && sSize*(b+1)+y1 < canvas.height ) {
-    ctx.fillStyle = getColor(square[a][b]);
-    ctx.globalAlpha = 0.5;
-    ctx.fillRect (sSize*(a+1)+x1,sSize*(b+1)+y1,sSize,sSize);
-    if ( sqsize > 20 ){
-      addText (square[a][b], sSize*0.95, sSize*(a+1.5)+x1,sSize*(b+1.5)+y1, currId);
+function shouldRender ( x1 , y1 , sSize , a , b) { //should this be rendered?
+  if ( sSize*(a+1)+x1 > 0 && sSize*(b+1)+y1 > 0 && sSize*a+x1 < canvas.width && sSize*b+y1 < canvas.height ) {
+    if(a!=0 && b!=0){
+      ctx.globalAlpha = 0.5;
+      ctx.fillStyle = getColor(square[a][b]);
+      ctx.fillRect (sSize*a+x1,sSize*b+y1,sSize,sSize);
+      ctx.globalAlpha = 1;
+      ctx.strokeStyle = "#000000";
+      ctx.lineWidth = sqsize/50;
+      ctx.strokeRect (sSize*a+x1,sSize*b+y1,sSize,sSize);
+      ctx.globalAlpha = 0.5;
+      if ( sqsize > 20 ){
+        addText (square[a][b], sSize*0.95, sSize*(a+0.5)+x1,sSize*(b+0.5)+y1, currId , 1);
+      }
+    }else if(!(a==0 && b==0)){
+      if ( sqsize > 20 ){
+        addText (square[a][b], sSize*0.95, sSize*(a+0.5)+x1, sSize*(b+0.5)+y1, currId , 2);
+      }
     }
   }
 }
 
-function addText(string , size , x , y , id){ // Loads a word
-  x = x-size*0.3;
-  size/=string.length;
+function addText(string , size , x , y , id , sizeFactor){ // Loads a word
+  ctx.globalAlpha = 0.5;
+  x = x-size*0.3/sizeFactor;
+  size/=string.length*sizeFactor;
+  y += Math.round(size)/4
   ctx.fillStyle = '#000000';
   ctx.font = Math.round(size)+'px Courier'
   ctx.fillText(string,x,y);

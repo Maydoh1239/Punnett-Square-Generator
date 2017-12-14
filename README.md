@@ -10,7 +10,7 @@ This program makes punnet squares using either Python 3 and PIL or JavaScript.
 * Input parents in the input boxes
 
 ### Online
-* Visit ![my website](UnsignedByte.github.io/programs/001)
+* Visit ![my website](https://UnsignedByte.github.io/programs/001)
 * Input parents in the input boxes
 
 ## Python How To

@@ -21,6 +21,8 @@ canvas.onmousewheel = function (evt) {
     scaleChange = Math.max(1,scale*wheel)-scale;
     sqX -= scaleChange*(mouseX-sqX)/scale;
     sqY -= scaleChange*(mouseY-sqY)/scale;
+    sqX = Math.min(sqX,0);
+    sqY = Math.min(sqY,0);
     scale=Math.max(1,scale*wheel);
     sqsize = canvas.width*scale/sqnum;
     renderFrame(sqX,sqY,sqsize);
@@ -43,6 +45,8 @@ function getMouseCoords ( evt ) {
   if ( mouseDown && mouseX > 0 && mouseY > 0 && mouseX < canvas.width && mouseY < canvas.height) {
     sqX -= (mouseX - (evt.clientX - rect.left));
     sqY -= (mouseY - (evt.clientY - rect.top));
+    sqX = Math.min(sqX,0);
+    sqY = Math.min(sqY,0);
     renderFrame(sqX,sqY,sqsize);
   }
   mouseX = (evt.clientX - rect.left);
@@ -109,10 +113,25 @@ function run(){
       }
     }
   }
-  console.log(square);
-  loadDone = true;
+  loadDone = valid();
   sqsize = canvas.width/(square.length);
   renderFrame(0,0,sqsize)
+}
+
+function valid() {
+  for (var a = 1; a<square.length; a++){
+    for (var b = 1; b<square[a].length; b++){
+      geneList = square[a][b].match(/.{1,2}/g);
+      for ( var i = 0; i<geneList.length; i++){
+        var lowerCaseGene = geneList[i].toLowerCase();
+        var inrange = (lowerCaseGene.charAt(0) >= 'a' && lowerCaseGene.charAt(0) <= 'z') && (lowerCaseGene.charAt(1) >= 'a' && lowerCaseGene.charAt(1) <= 'z');
+        if (lowerCaseGene.charAt(0) != lowerCaseGene.charAt(1) || !inrange){
+          return false;
+        }
+      }
+    }
+  }
+  return true;
 }
 
 function renderFrame(x1, y1, sSize){ //allows zooming

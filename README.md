@@ -7,7 +7,11 @@ This program makes punnet squares using either Python 3 and PIL or JavaScript.
 ### From local files
 * Download all files to your computer
 * Open `.../Punnett-Square-Generator/JS/index.html` in your browser.
-* Input parents in inputs
+* Input parents in the input boxes
+
+### Online
+* Visit ![my website](UnsignedByte.github.io/programs/001)
+* Input parents in the input boxes
 
 ## Python How To
 * Download all files to your computer

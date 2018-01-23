@@ -165,7 +165,7 @@ function shouldRender ( x1 , y1 , sSize , a , b) { //should this be rendered?
       }
     }else if(!(a==0 && b==0)){
       if ( sqsize > 20 ){
-        addText (square[a][b], sSize*0.95, sSize*(a+0.5)+x1, sSize*(b+0.5)+y1, currId , 2);
+        addText (square[b][a], sSize*0.95, sSize*(a+0.5)+x1, sSize*(b+0.5)+y1, currId , 2);
       }
     }
   }

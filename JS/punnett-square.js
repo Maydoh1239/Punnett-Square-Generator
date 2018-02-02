@@ -69,6 +69,8 @@ function update(){
   input2 = document.getElementById('input2').value;
   //Checks if both parents have same number of alleles and whether it is an even amount total and neither is blank
   if (input1.length===input2.length && input1.length>0 && input1.length/2==Math.round(input1.length/2)){
+    input1 = geneSort(input1);
+    input2 = geneSort(input2);
     run();
   }
 }

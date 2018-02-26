@@ -1,6 +1,6 @@
 # Punnett Square Generator
 
-This program makes punnet squares using either Python 3 and PIL or JavaScript.
+This program makes punnet squares using Python 3 JavaScript.
 
 ## Javascript How To
 
@@ -15,6 +15,7 @@ This program makes punnet squares using either Python 3 and PIL or JavaScript.
 
 ## Python How To
 * Download all files to your computer
+* Download and install the pillow module (or PIL for Python 2.7 users)
 * Open and run `.../Punnett-Square-Generator/Python/Squares.py`
 * Input parents separated by a dash
 
